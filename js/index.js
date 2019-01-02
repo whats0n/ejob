@@ -263,6 +263,18 @@ eval("module.exports = function(originalModule) {\n\tif (!originalModule.webpack
 
 /***/ }),
 
+/***/ "./src/fees.js":
+/*!*********************!*\
+  !*** ./src/fees.js ***!
+  \*********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! scrollmagic */ \"./node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js\");\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(scrollmagic__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ \"./node_modules/gsap/index.js\");\n\n\n\nconst section = document.querySelector('.js-fees')\nconst boxes = section.querySelectorAll('.js-fees-box')\n\nconst controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Controller\"]()\n\nArray\n\t.prototype\n\t.forEach\n\t.call(boxes, box => {\n\t\tconst circle = box.querySelector('.js-fees-circle ellipse')\n\t\tconst text = box.querySelectorAll('.js-fees-text')\n\t\tconst svg = { counter: 420 }\n\t\tconst tl = new gsap__WEBPACK_IMPORTED_MODULE_1__[\"TimelineMax\"]({ paused: true })\n\t\t\t.addLabel('start')\n\t\t\t.addLabel('text', .4)\n\t\t\t.to(svg, 1.5, {\n\t\t\t\tcounter: 0,\n\t\t\t\tease: Power2.easeInOut\n\t\t\t}, 'start')\n\t\t\t.staggerTo(text, 0.7, {\n\t\t\t\topacity: 1,\n\t\t\t\ty: 0,\n\t\t\t\tease: Power2.easeOut\n\t\t\t}, 0.2, 'text')\n\t\t\t.eventCallback('onUpdate', e => {\n\t\t\t\tcircle.setAttribute('stroke-dashoffset', svg.counter)\n\t\t\t})\n\n\t\tconst scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Scene\"]({\n\t\t\ttriggerHook: 'onEnter',\n\t\t\ttriggerElement: box,\n\t\t\toffset: box.offsetHeight * 1.5\n\t\t})\n\n\t\tscene\n\t\t\t.addTo(controller)\n\t\t\t.on('enter', () => {\n\t\t\t\ttl.play()\n\t\t\t})\n\t\t\t.on('leave', () => {\n\t\t\t\tconsole.log('leave')\n\t\t\t\ttl.reverse()\n\t\t\t})\n\t})\n\n\n//# sourceURL=webpack:///./src/fees.js?");
+
+/***/ }),
+
 /***/ "./src/hero.js":
 /*!*********************!*\
   !*** ./src/hero.js ***!
@@ -282,7 +294,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var scro
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("window.addEventListener('load', () => {\n\t__webpack_require__(/*! ./hero */ \"./src/hero.js\")\n\t__webpack_require__(/*! ./why */ \"./src/why.js\")\n\t__webpack_require__(/*! ./market */ \"./src/market.js\")\n})\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("window.addEventListener('load', () => {\n\t__webpack_require__(/*! ./hero */ \"./src/hero.js\")\n\t__webpack_require__(/*! ./why */ \"./src/why.js\")\n\t__webpack_require__(/*! ./market */ \"./src/market.js\")\n\t__webpack_require__(/*! ./fees */ \"./src/fees.js\")\n})\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
