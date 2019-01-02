@@ -2,11 +2,13 @@ import { Scene, Controller } from 'scrollmagic'
 import { TimelineMax } from 'gsap'
 
 const section = document.querySelector('.js-why')
+const container = section.querySelector('.container')
 
 const controller = new Controller()
 const scene = new Scene({
+	triggerHook: 'onLeave',
 	triggerElement: section,
-	duration: section.offsetHeight
+	duration: container.offsetHeight
 })
 
 const tl = new TimelineMax({ paused: true })
@@ -17,9 +19,10 @@ const tl = new TimelineMax({ paused: true })
 scene
 	.addTo(controller)
 	.on('progress', ({ progress }) => {
-		if (progress === 1) {
-			tl.play()
-		} else {
-			tl.reverse()
-		}
+		tl.progress(progress)
+		// if (progress === 1) {
+		// 	tl.play()
+		// } else {
+		// 	tl.reverse()
+		// }
 	})

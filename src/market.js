@@ -3,15 +3,17 @@ import { TimelineMax } from 'gsap'
 
 const section = document.querySelector('.js-market')
 const title = section.querySelector('.js-market-title')
-const item = section.querySelectorAll('.js-market-item')
-const box = section.querySelectorAll('.js-market-box')
-const duration = 4.8
+const items = section.querySelectorAll('.js-market-item')
+// const box = section.querySelectorAll('.js-market-box')
+
+
 
 const controller = new Controller()
-const scene = new Scene({
-	triggerHook: 'onEnter',
-	triggerElement: section,
-	duration: section.offsetHeight
+const titleScene = new Scene({
+	triggerHook: 'onLeave',
+	triggerElement: title,
+	duration: 200,
+	offset: -100
 })
 
 const titleTL = new TimelineMax({ paused: true })
@@ -19,18 +21,38 @@ const titleTL = new TimelineMax({ paused: true })
 		opacity: 0
 	})
 
-const mainTL = new TimelineMax({ paused: true })
-	.addLabel('start')
-	.staggerTo(item, duration/item.length, {
-		opacity: 1
-	}, 0.3, 'start')
-	.staggerTo(box, duration/box.length, {
-		opacity: 1
-	}, 0.3, 'start')
+// const mainTL = new TimelineMax({ paused: true })
+// 	.addLabel('start')
+// 	.staggerTo(item, duration/item.length, {
+// 		opacity: 1
+// 	}, 0.3, 'start')
+// 	.staggerTo(box, duration/box.length, {
+// 		opacity: 1
+// 	}, 0.3, 'start')
 
-scene
+titleScene
 	.addTo(controller)
 	.on('progress', ({ progress }) => {
-		titleTL.progress(progress / 1.3)
-		mainTL.progress(progress / 1.8)
+		titleTL.progress(progress)
+	})
+
+Array
+	.prototype
+	.forEach
+	.call(items, item => {
+		const tl = new TimelineMax({ paused: true })
+			.to(item, 1, {
+				opacity: 1
+			})
+		const scene = new Scene({
+			triggerHook: 'onCenter',
+			triggerElement: item,
+			duration: 200,
+			offset: -100
+		})
+		scene
+			.addTo(controller)
+			.on('progress', ({ progress }) => {
+				tl.progress(progress / 2)
+			})
 	})

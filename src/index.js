@@ -1,3 +1,5 @@
-import './hero'
-import './why'
-import './market'
+window.addEventListener('load', () => {
+	require('./hero')
+	require('./why')
+	require('./market')
+})
