@@ -294,7 +294,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var scro
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("window.addEventListener('load', () => {\n\t__webpack_require__(/*! ./hero */ \"./src/hero.js\")\n\t__webpack_require__(/*! ./why */ \"./src/why.js\")\n\t__webpack_require__(/*! ./market */ \"./src/market.js\")\n\t__webpack_require__(/*! ./fees */ \"./src/fees.js\")\n})\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("window.addEventListener('load', () => {\n\t__webpack_require__(/*! ./hero */ \"./src/hero.js\")\n\t__webpack_require__(/*! ./why */ \"./src/why.js\")\n\t__webpack_require__(/*! ./market */ \"./src/market.js\")\n\t__webpack_require__(/*! ./fees */ \"./src/fees.js\")\n\t__webpack_require__(/*! ./support */ \"./src/support.js\")\n})\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -307,6 +307,18 @@ eval("window.addEventListener('load', () => {\n\t__webpack_require__(/*! ./hero 
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! scrollmagic */ \"./node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js\");\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(scrollmagic__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ \"./node_modules/gsap/index.js\");\n\n\n\nconst section = document.querySelector('.js-market')\nconst title = section.querySelector('.js-market-title')\nconst items = section.querySelectorAll('.js-market-item')\n// const box = section.querySelectorAll('.js-market-box')\n\n\n\nconst controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Controller\"]()\nconst titleScene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Scene\"]({\n\ttriggerHook: 'onLeave',\n\ttriggerElement: title,\n\tduration: 200,\n\toffset: -100\n})\n\nconst titleTL = new gsap__WEBPACK_IMPORTED_MODULE_1__[\"TimelineMax\"]({ paused: true })\n\t.to(title, 1.5, {\n\t\topacity: 0\n\t})\n\n// const mainTL = new TimelineMax({ paused: true })\n// \t.addLabel('start')\n// \t.staggerTo(item, duration/item.length, {\n// \t\topacity: 1\n// \t}, 0.3, 'start')\n// \t.staggerTo(box, duration/box.length, {\n// \t\topacity: 1\n// \t}, 0.3, 'start')\n\ntitleScene\n\t.addTo(controller)\n\t.on('progress', ({ progress }) => {\n\t\ttitleTL.progress(progress)\n\t})\n\nArray\n\t.prototype\n\t.forEach\n\t.call(items, item => {\n\t\tconst tl = new gsap__WEBPACK_IMPORTED_MODULE_1__[\"TimelineMax\"]({ paused: true })\n\t\t\t.to(item, 1, {\n\t\t\t\topacity: 1\n\t\t\t})\n\t\tconst scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Scene\"]({\n\t\t\ttriggerHook: 'onCenter',\n\t\t\ttriggerElement: item,\n\t\t\tduration: 200,\n\t\t\toffset: -100\n\t\t})\n\t\tscene\n\t\t\t.addTo(controller)\n\t\t\t.on('progress', ({ progress }) => {\n\t\t\t\ttl.progress(progress / 2)\n\t\t\t})\n\t})\n\n//# sourceURL=webpack:///./src/market.js?");
+
+/***/ }),
+
+/***/ "./src/support.js":
+/*!************************!*\
+  !*** ./src/support.js ***!
+  \************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! scrollmagic */ \"./node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js\");\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(scrollmagic__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ \"./node_modules/gsap/index.js\");\n\n\n\nconst section = document.querySelector('.js-support')\nconst items = section.querySelectorAll('.js-support-item')\n\nconst controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Controller\"]()\nconst scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Scene\"]({\n\ttriggerHook: 'onEnter',\n\ttriggerElement: section,\n\toffset: 200\n})\nconst tl = new gsap__WEBPACK_IMPORTED_MODULE_1__[\"TimelineMax\"]({ paused: true })\n\t.staggerTo(items, 0.8, {\n\t\topacity: 1\n\t}, 0.6)\n\nscene\n\t.addTo(controller)\n\t.on('enter', () => {\n\t\ttl.play()\n\t})\n\t.on('leave', () => {\n\t\ttl.reverse()\n\t})\n\n//# sourceURL=webpack:///./src/support.js?");
 
 /***/ }),
 

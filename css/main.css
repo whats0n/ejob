@@ -3480,7 +3480,7 @@ a {
   transform: rotate(-90deg);
 }
 
-/*.block-fees .circle ellipse {
-	transition: stroke-dashoffset 1s ease-in-out;
-}*/
+.block-support__item {
+	opacity: 0;
+}
 
