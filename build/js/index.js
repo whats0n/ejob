@@ -283,7 +283,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var scro
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hero */ \"./src/hero.js\");\n/* harmony import */ var _why__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./why */ \"./src/why.js\");\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hero */ \"./src/hero.js\");\n/* harmony import */ var _why__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./why */ \"./src/why.js\");\n/* harmony import */ var _market__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./market */ \"./src/market.js\");\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/market.js":
+/*!***********************!*\
+  !*** ./src/market.js ***!
+  \***********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! scrollmagic */ \"./node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js\");\n/* harmony import */ var scrollmagic__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(scrollmagic__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ \"./node_modules/gsap/index.js\");\n\n\n\nconst section = document.querySelector('.js-market')\nconst title = section.querySelector('.js-market-title')\nconst item = section.querySelectorAll('.js-market-item')\nconst box = section.querySelectorAll('.js-market-box')\nconst duration = 4.8\n\nconst controller = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Controller\"]()\nconst scene = new scrollmagic__WEBPACK_IMPORTED_MODULE_0__[\"Scene\"]({\n\ttriggerHook: 'onEnter',\n\ttriggerElement: section,\n\tduration: section.offsetHeight\n})\n\nconst titleTL = new gsap__WEBPACK_IMPORTED_MODULE_1__[\"TimelineMax\"]({ paused: true })\n\t.to(title, 1.5, {\n\t\topacity: 0\n\t})\n\nconst mainTL = new gsap__WEBPACK_IMPORTED_MODULE_1__[\"TimelineMax\"]({ paused: true })\n\t.addLabel('start')\n\t.staggerTo(item, duration/item.length, {\n\t\topacity: 1\n\t}, 0.3, 'start')\n\t.staggerTo(box, duration/box.length, {\n\t\topacity: 1\n\t}, 0.3, 'start')\n\nscene\n\t.addTo(controller)\n\t.on('progress', ({ progress }) => {\n\t\ttitleTL.progress(progress / 1.3)\n\t\tmainTL.progress(progress / 1.8)\n\t})\n\n//# sourceURL=webpack:///./src/market.js?");
 
 /***/ }),
 
