@@ -3,6 +3,7 @@ import { TimelineMax } from 'gsap'
 
 const why = document.querySelector('.js-why')
 const section = document.querySelector('.js-hero')
+const title = section.querySelector('.js-hero-title')
 const img = section.querySelector('.js-hero-img')
 const figure = section.querySelector('.js-hero-figure')
 const figureIn = section.querySelector('.js-hero-figure-in')
@@ -52,12 +53,17 @@ new TimelineMax()
 	}, bounceInDelay)
 
 new TimelineMax()
-	.to(img, 0.9, {
+	.addLabel('start', 0.15)
+	.to(title, 1.5, {
+		opacity: 1
+	}, 'start')
+	.to(img, 1.5, {
 		opacity: 1,
-		x: 0
-	});
+		x: 0,
+		ease: Power2.easeInOut
+	}, 'start');
 
-(function() {
+const getInfo = () => {
 	const { scrollY, pageYOffset, getComputedStyle } = window
 	const scrollTop = scrollY || pageYOffset
 
@@ -70,24 +76,34 @@ new TimelineMax()
 	const imgOffset = img.getBoundingClientRect()
 	const imgBottom = imgOffset.top + scrollTop + img.offsetHeight
 
+	return {
+		scrollTop,
+		figureTop,
+		whyBottom,
+		imgBottom,
+		imgHeight: img.offsetHeight
+	}
+}
+
+(function() {
+	const info = getInfo()
+
 	const controller = new Controller()
 	const scene = new Scene({
-		offset: figureTop,
-		duration: whyBottom - figureTop - img.offsetHeight
+		offset: info.figureTop,
+		duration: info.whyBottom - info.figureTop - info.imgHeight
 	})
+
 	scene
 		.addTo(controller)
 		.on('progress', ({ progress }) => {
-			const maxWidth = `${figure.offsetWidth}px`
-			const minHeight = `${img.offsetHeight}px`
-
 			if (progress > 0 && progress < 1) {
 				figure.classList.add(IS_FIXED)
-				img.style.maxWidth = maxWidth
-				figure.style.minHeight = minHeight
+				img.style.maxWidth = `${figure.offsetWidth}px`
+				figure.style.minHeight = `${info.imgHeight}px`
 				figureIn.removeAttribute('style')
 			} else if (progress >= 1) {
-				const diff = whyBottom - figureTop - img.offsetHeight
+				const diff = info.whyBottom - info.figureTop - info.imgHeight
 				const translateY = `translateY(${diff}px)`
 				figure.classList.remove(IS_FIXED)
 				figureIn.setAttribute('style', `
@@ -100,5 +116,4 @@ new TimelineMax()
 				figureIn.removeAttribute('style')
 			}
 		})
-
 })()

@@ -3432,6 +3432,10 @@ a {
 	transform: translateX(-15%);
 }
 
+.visual h1 {
+	opacity: 0;
+}
+
 .visual .image-holder img {
 	opacity: 0;
 	transform: translateX(150px);
