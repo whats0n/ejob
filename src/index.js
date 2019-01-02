@@ -3,4 +3,5 @@ window.addEventListener('load', () => {
 	require('./why')
 	require('./market')
 	require('./fees')
+	require('./support')
 })
