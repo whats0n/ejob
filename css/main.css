@@ -3445,3 +3445,8 @@ a {
 	position: fixed;
 	top: 0;
 }
+
+.block-market__box,
+.block-market__item {
+	opacity: 0;
+}
