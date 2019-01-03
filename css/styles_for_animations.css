@@ -1,0 +1,65 @@
+.visual .shape-image svg {
+	width: 100%;
+	height: 100%;
+	transform: translateX(-15%);
+}
+
+.visual h1 {
+	opacity: 0;
+}
+
+.visual .image-holder img {
+	opacity: 0;
+	transform: translateX(150px);
+}
+
+.visual .image-holder.is-fixed img {
+	position: fixed;
+	top: 0;
+}
+
+/*block market*/
+.block-market {
+	padding: 100px 0;
+}
+.block-market__box,
+.block-market__item {
+	opacity: 0;
+}
+.block-market__list {
+	transform: translateY(50%);
+}
+/*block market*/
+
+.block-fees .circle {
+	position: relative;
+	border: none;
+	box-shadow: none;
+}
+
+.block-fees .circle.is-active {
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+}
+
+.block-fees .circle .amount,
+.block-fees .circle .text,
+.block-fees .info-text {
+	display: block;
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.block-fees .circle svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+  stroke-dashoffset: 420;
+  stroke-dasharray: 420;
+  transform: rotate(-90deg);
+}
+
+.block-support__item {
+	opacity: 0;
+}
