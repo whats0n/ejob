@@ -35,11 +35,9 @@ const itemsTL = new TimelineMax({ paused: true })
 scene
 	.setPin(container)
 	.on('enter', () => {
-		console.log('start')
 		logosTL.play()
 	})
 	.on('leave', ({ progress }) => {
-		console.log('end', progress)
 		!progress && logosTL.reverse()
 	})
 	.on('progress', ({ progress }) => {

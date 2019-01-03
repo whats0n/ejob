@@ -24,7 +24,7 @@ Array
 				opacity: 1,
 				y: 0,
 				ease: Power2.easeOut
-			}, 0.2, 'text')
+			}, 0.4, 'text')
 			.eventCallback('onUpdate', e => {
 				circle.setAttribute('stroke-dashoffset', svg.counter)
 			})
@@ -41,7 +41,6 @@ Array
 				tl.play()
 			})
 			.on('leave', () => {
-				console.log('leave')
 				tl.reverse()
 			})
 	})

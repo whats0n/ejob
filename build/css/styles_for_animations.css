@@ -46,6 +46,10 @@
 .block-fees .info-text {
 	display: block;
 	opacity: 0;
+}
+
+.block-fees .circle .amount,
+.block-fees .circle .text {
 	transform: translateY(20px);
 }
 
@@ -63,3 +67,21 @@
 .block-support__item {
 	opacity: 0;
 }
+
+/*meet*/
+.block-meet .image-holder svg {
+	width: 100%;
+	transform: translateX(-3.5%);
+}
+
+.block-meet__subtitle,
+.block-meet__text {
+	opacity: 0;
+	will-change: opacity;
+}
+
+/*.block-meet .image-holder g path,
+.block-meet .image-holder g circle {
+
+}*/
+/*meet*/
