@@ -5,4 +5,5 @@ window.addEventListener('load', () => {
 	require('./fees')
 	require('./support')
 	require('./road')
+	require('./speaks')
 })
