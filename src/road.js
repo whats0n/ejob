@@ -91,7 +91,8 @@ const tl = new TimelineMax({ paused: true })
 const controller = new Controller()
 const scene = new Scene({
 	triggerHook: 'onCenter',
-	triggerElement: section
+	triggerElement: section,
+	duration: section.offsetHeight
 })
 
 scene

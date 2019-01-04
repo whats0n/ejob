@@ -22,6 +22,11 @@
 .block-market {
 	padding: 100px 0;
 }
+
+.block-market__container {
+	width: 100%;
+}
+
 .block-market__box,
 .block-market__item {
 	opacity: 0;
@@ -31,6 +36,7 @@
 }
 /*block market*/
 
+/*fees*/
 .block-fees .circle {
 	position: relative;
 	border: none;
@@ -63,10 +69,22 @@
   stroke-dasharray: 420;
   transform: rotate(-90deg);
 }
+/*fees*/
+
+/*support*/
+.block-support {
+	padding: 100px 0;
+}
+
+.block-support__text {
+	opacity: 0;
+	transform: translateY(50%);
+}
 
 .block-support__item {
 	opacity: 0;
 }
+/*support*/
 
 /*meet*/
 .block-meet .image-holder svg {
@@ -79,9 +97,27 @@
 	opacity: 0;
 	will-change: opacity;
 }
-
-/*.block-meet .image-holder g path,
-.block-meet .image-holder g circle {
-
-}*/
 /*meet*/
+
+/*speaks*/
+.block-speaks .shape-image {
+	height: auto;
+	font-size: 0;
+}
+.block-speaks .shape-image svg {
+	width: 100%;
+}
+
+.block-speaks__gap {
+	position: absolute;
+	right: 24.5%;
+	bottom: 36%;
+	border: 10px solid red;
+	border-radius: 50%;
+	width: 270px;
+	height: 270px;
+	transform: translate(50%,50%);
+}
+/*speaks*/
+
+
