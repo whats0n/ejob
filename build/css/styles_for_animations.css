@@ -8,10 +8,10 @@
 	opacity: 0;
 }
 
-.visual .image-holder img {
+/*.visual .image-holder img {
 	opacity: 0;
 	transform: translateX(150px);
-}
+}*/
 
 .visual .image-holder.is-fixed img {
 	position: fixed;

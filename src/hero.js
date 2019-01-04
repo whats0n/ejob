@@ -3,13 +3,17 @@ import { TimelineMax } from 'gsap'
 
 const why = document.querySelector('.js-why')
 const section = document.querySelector('.js-hero')
+
 const title = section.querySelector('.js-hero-title')
 const img = section.querySelector('.js-hero-img')
+
 const figure = section.querySelector('.js-hero-figure')
 const figureIn = section.querySelector('.js-hero-figure-in')
+
 const yellow = section.querySelector('.js-hero-yellow')
 const orange = section.querySelector('.js-hero-orange')
 const blue = section.querySelector('.js-hero-blue')
+
 const groupItemsFirst = section
 	.querySelector('.js-hero-group-first')
 	.querySelectorAll('.js-hero-item')
@@ -56,11 +60,6 @@ new TimelineMax()
 	.addLabel('start', 0.15)
 	.to(title, 1.5, {
 		opacity: 1
-	}, 'start')
-	.to(img, 1.5, {
-		opacity: 1,
-		x: 0,
-		ease: Power2.easeInOut
 	}, 'start');
 
 const getInfo = () => {

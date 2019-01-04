@@ -8,7 +8,7 @@ const list = section.querySelectorAll('.js-market-list')
 const items = section.querySelectorAll('.js-market-item')
 const logos = section.querySelectorAll('.js-market-logo')
 
-const height = 2000
+const height = 3000
 
 const controller = new Controller()
 const scene = new Scene({
@@ -25,6 +25,9 @@ const logosTL = new TimelineMax({ paused: true })
 
 const itemsTL = new TimelineMax({ paused: true })
 	.addLabel('start')
+	.to({ counter: 0 }, (items.length + 1) * 0.7, {
+		counter: 1
+	})
 	.to(list, 0.7 * items.length, {
 		y: 0
 	}, 'start')
@@ -32,17 +35,34 @@ const itemsTL = new TimelineMax({ paused: true })
 		opacity: 1
 	}, 0.7, 'start')
 
+let played = false
+let progressPrev = 0
+
 scene
 	.setPin(container)
 	.on('enter', () => {
-		logosTL.play()
+		// console.log(progress)
+		// logosTL.play()
 	})
 	.on('leave', ({ progress }) => {
-		!progress && logosTL.reverse()
+		// !progress && logosTL.reverse()
 	})
 	.on('progress', ({ progress }) => {
-		console.log(progress)
-		itemsTL.progress(progress)
+		// console.log(progress)
+		if (progress > 0.1 && !played) {
+			played = true
+			logosTL.play()
+		} else if (progress <= 0.1 && played) {
+			played = false
+			logosTL.reverse()
+		}
+		if (progress > 0.2 && progressPrev < progress) {
+			itemsTL.progress(progress - 0.2)
+		} else if (progressPrev >= progress) {
+			progress = progress - 0.2 < 0 ? 0 : progress - 0.2
+			itemsTL.progress(progress)
+		}
+		progressPrev = progress
 	})
 	.addTo(controller)
 
