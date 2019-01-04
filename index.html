@@ -369,90 +369,98 @@
 					</div>
 				</div>
 			</section>
-			<section class="block-speaks">
+			<section class="block-speaks js-speaks">
 				<div class="shape-image">
-					<!-- <img src="images/shape3.png" alt="shape"> -->
 					<svg
 						viewBox="0 0 845.5 566.5"
 						enable-background="new 0 0 845.5 566.5"
 						xml:space="preserve"
 					>
-						<circle fill="#fff" cx="32.5" cy="32.5" r="30.8"/>
-						<circle fill="#fff" cx="110.9" cy="75.9" r="30.8"/>
-						<circle fill="#fff" cx="185.3" cy="118" r="30.8"/>
-						<circle fill="#fff" cx="258.4" cy="157.3" r="30.8"/>
-						<circle fill="#fff" cx="327.9" cy="196.9" r="30.8"/>
-						<circle fill="#fff" cx="399.7" cy="237" r="30.8"/>
-						<!-- <path fill="none" stroke="#00447A" stroke-width="57" stroke-miterlimit="10" d="M814.7,360.8c0,96.7-78.3,175-175,175s-175-78.3-175-175s78.3-175,175-175S814.7,264.2,814.7,360.8z"/> -->
-						<circle fill="none" stroke="#00447A" stroke-width="57" r="175" transform="translate(640, 360)"></circle>
-						<circle fill="none" stroke="#FFBF00" stroke-width="53" r="168" transform="translate(640, 360)"></circle>
+						<circle class="js-speaks-circle" fill="#fff" transform="translate(32.5, 32.5) scale(0)" r="30.8"/>
+						<circle class="js-speaks-circle" fill="#fff" transform="translate(110.9, 75.9) scale(0)" r="30.8"/>
+						<circle class="js-speaks-circle" fill="#fff" transform="translate(185.3, 118) scale(0)" r="30.8"/>
+						<circle class="js-speaks-circle" fill="#fff" transform="translate(258.4, 157.3) scale(0)" r="30.8"/>
+						<circle class="js-speaks-circle" fill="#fff" transform="translate(327.9, 196.9) scale(0)" r="30.8"/>
+						<circle class="js-speaks-circle" fill="#fff" transform="translate(399.7, 237) scale(0)" r="30.8"/>
+						<circle class="js-speaks-yellow" fill="none" stroke="#FFBF00" stroke-width="53" r="168" transform="translate(640, 360) scale(0)"></circle>
 					</svg>
-					<div class="block-speaks__gap">
-						<div class="block-speaks__gap-in"></div>
+					<div class="block-speaks__gap js-rotator">
+						<div class="block-speaks__gap-inner js-speaks-gap js-rotator-in">
+							<div class="block-speaks__gap-in">
+								<div class="block-speaks__gap-left">
+									<div class="block-speaks__gap-left-in"></div>
+								</div>
+							</div>
+							<div class="block-speaks__gap-in block-speaks__gap-in_right">
+								<div class="block-speaks__gap-left">
+									<div class="block-speaks__gap-left-in"></div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="container">
 					<header class="head">
 						<h2>Olly also speaks</h2>
 					</header>
-					<div class="wrap">
+					<div class="wrap js-speaks-content">
 						<div class="chat-box">
-							<div class="sender">
+							<div class="sender block-speaks__cloud js-speaks-cloud" data-connect="first">
 								<strong class="title">You</strong>
 								<div class="box">
 									<p>I need someone to paint my house by within the coming week</p>
 								</div>
 							</div>
-							<div class="reciever">
+							<div class="reciever block-speaks__cloud js-speaks-cloud" data-connect="second">
 								<strong class="title"><span class="color">O</span>lly</strong>
 								<div class="box">
 									<p>Hi *name*, good to have you back.</p>
 									<p>How many walls are we talking about? And what colours do you need?</p>
 								</div>
 							</div>
-							<div class="sender">
+							<div class="sender block-speaks__cloud js-speaks-cloud">
 								<strong class="title">You</strong>
 								<div class="box">
 									<p>I need 12 walls to be painted in white.</p>
 								</div>
 							</div>
-							<div class="reciever">
+							<div class="reciever block-speaks__cloud js-speaks-cloud" data-connect="third">
 								<strong class="title"><span class="color">O</span>lly</strong>
 								<div class="box">
 									<p>I’m assuming that there are 3 ceilings included, is that right?</p>
 								</div>
 							</div>
-							<div class="sender">
+							<div class="sender block-speaks__cloud js-speaks-cloud">
 								<strong class="title">You</strong>
 								<div class="box">
 									<p>Correct.</p>
 								</div>
 							</div>
-							<div class="reciever">
+							<div class="reciever block-speaks__cloud js-speaks-cloud">
 								<strong class="title"><span class="color">O</span>lly</strong>
 								<div class="box">
 									<p>I found your perfect match, this is the type of person I know you’ll like. Only problem is, he is only available for next week.</p>
 								</div>
 							</div>
-							<div class="sender">
+							<div class="sender block-speaks__cloud js-speaks-cloud">
 								<strong class="title">You</strong>
 								<div class="box">
 									<p>Oke, I trust your judgement, please book him.</p>
 								</div>
 							</div>
-							<div class="reciever">
+							<div class="reciever block-speaks__cloud js-speaks-cloud">
 								<strong class="title"><span class="color">O</span>lly</strong>
 								<div class="box">
 									<p>Oke, the price will be $899,- and he will be done in 1 day. Please confirm.</p>
 								</div>
 							</div>
-							<div class="sender">
+							<div class="sender block-speaks__cloud js-speaks-cloud">
 								<strong class="title">You</strong>
 								<div class="box">
 									<p>I Confirm.</p>
 								</div>
 							</div>
-							<div class="reciever">
+							<div class="reciever block-speaks__cloud js-speaks-cloud">
 								<strong class="title"><span class="color">O</span>lly</strong>
 								<div class="box">
 									<p>Great! The appointment is booked. Glad I could help, I’ll keep you posted, Bye!</p>
@@ -460,26 +468,28 @@
 							</div>
 						</div>
 						<div class="chat-details">
-							<div class="box">
-								<strong class="title"><span class="color">O</span>lly listens to your input</strong>
-								<p>Mauris ut magna augue. Phasellus tristique ipsum vitae augue faucibus, nec lobortis elit iaculis. Etiam neque enim, pellentesque nec lacinia eu, mattis mollis metus. Etiam nec interdum enim.</p>
+							<div class="block-speaks__details-in js-speaks-details">
+								<div class="box block-speaks__box js-speaks-detail"  data-connect="first">
+									<strong class="title"><span class="color">O</span>lly listens to your input</strong>
+									<p>Mauris ut magna augue. Phasellus tristique ipsum vitae augue faucibus, nec lobortis elit iaculis. Etiam neque enim, pellentesque nec lacinia eu, mattis mollis metus. Etiam nec interdum enim.</p>
+								</div>
+								<div class="box block-speaks__box js-speaks-detail"  data-connect="second">
+									<strong class="title"><span class="color">O</span>lly asks you for input</strong>
+									<p>Integer tempus neque ut urna ornare, vitae ullamcorper quam ornare. Morbi fringilla nunc in augue dignissim tincidunt sit amet consectetur purus. Curabitur vitae mollis dolor, sit amet pellentesque est.</p>
+								</div>
+								<div class="box block-speaks__box js-speaks-detail"  data-connect="third">
+									<strong class="title"><span class="color">O</span>lly is smart</strong>
+									<p>Nam pulvinar nulla dignissim, iaculis eros id, maximus mauris. Vestibulum tincidunt ut magna at cursus. Ut sit amet quam sagittis, lobortis nibh at, mattis urna. Nam interdum diam nunc, quis pulvinar sem accumsan eleifend.</p>
+								</div>
+								<div class="box block-speaks__box js-speaks-detail" data-connect="last">
+									<strong class="title"><span class="color">O</span>lly is crossplatform</strong>
+									<p>Olly is available through are ways of navigation. You can use your phone, tablet, desktop, Amazon Alex, Google Home, Siri and oll other layers of navigation that will be introduced in the future.</p>
+									<ul class="logos-list">
+										<li><img src="images/img-google.png" alt="Google"></li>
+										<li><img src="images/img-amazon.png" alt="amazon"></li>
+									</ul>
+								</div>
 							</div>
-							<div class="box">
-								<strong class="title"><span class="color">O</span>lly asks you for input</strong>
-								<p>Integer tempus neque ut urna ornare, vitae ullamcorper quam ornare. Morbi fringilla nunc in augue dignissim tincidunt sit amet consectetur purus. Curabitur vitae mollis dolor, sit amet pellentesque est.</p>
-							</div>
-							<div class="box">
-								<strong class="title"><span class="color">O</span>lly is smart</strong>
-								<p>Nam pulvinar nulla dignissim, iaculis eros id, maximus mauris. Vestibulum tincidunt ut magna at cursus. Ut sit amet quam sagittis, lobortis nibh at, mattis urna. Nam interdum diam nunc, quis pulvinar sem accumsan eleifend.</p>
-							</div>
-							<div class="box">
-								<strong class="title"><span class="color">O</span>lly is crossplatform</strong>
-								<p>Olly is available through are ways of navigation. You can use your phone, tablet, desktop, Amazon Alex, Google Home, Siri and oll other layers of navigation that will be introduced in the future.</p>
-							</div>
-							<ul class="logos-list">
-								<li><img src="images/img-google.png" alt="Google"></li>
-								<li><img src="images/img-amazon.png" alt="amazon"></li>
-							</ul>
 						</div>
 					</div>
 				</div>

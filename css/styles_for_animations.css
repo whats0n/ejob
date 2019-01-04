@@ -110,13 +110,80 @@
 
 .block-speaks__gap {
 	position: absolute;
-	right: 24.5%;
-	bottom: 36%;
-	border: 10px solid red;
+	right: 24.3%;
+	bottom: 36.15%;
 	border-radius: 50%;
-	width: 270px;
-	height: 270px;
+	width: 48.346%;
 	transform: translate(50%,50%);
+}
+
+.block-speaks__gap-inner {
+	padding-bottom: 100%;
+	border-radius: 50%;
+	width: 100%;
+	transform: scale(0);
+}
+
+.block-speaks__gap-in {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transform: rotate(-105deg);
+}
+
+.block-speaks__gap-in_right {
+	transform: rotate(105deg);
+}
+
+.block-speaks__gap-left {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	padding-bottom: 50%;
+	width: 100%;
+}
+
+.block-speaks__gap-left-in {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-bottom: 100%;
+	width: 100%;
+}
+
+.block-speaks__gap-left-in:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border: 7px solid #00447A;
+	border-radius: 50%;
+}
+
+.block-speaks__cloud {
+	transform: translateY(50%);
+}
+
+.block-speaks__cloud,
+.block-speaks__box {
+	opacity: 0;
+}
+
+.block-speaks__box:last-child {
+	margin-bottom: 0;
+}
+
+.block-speaks .logos-list {
+	margin-top: 40px;
+}
+
+.block-speaks__details-in {
+	padding: 30px 0;
 }
 /*speaks*/
 
