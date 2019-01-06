@@ -6,4 +6,7 @@ window.addEventListener('load', () => {
 	require('./support')
 	require('./road')
 	require('./speaks')
+	require('./team')
+	require('./delivery')
+	require('./details')
 })

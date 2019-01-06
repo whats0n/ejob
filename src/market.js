@@ -21,9 +21,7 @@ const logosTL = new TimelineMax({ paused: true })
 	.staggerTo(logos, 0.7, {
 		opacity: 1,
 		ease: Power2.easeInOut
-	}, 0.3)
-
-const itemsTL = new TimelineMax({ paused: true })
+	}, 0.3, 0.3)
 	.addLabel('start')
 	.to({ counter: 0 }, (items.length + 1) * 0.7, {
 		counter: 1
@@ -34,6 +32,18 @@ const itemsTL = new TimelineMax({ paused: true })
 	.staggerTo(items, 0.7, {
 		opacity: 1
 	}, 0.7, 'start')
+
+// const itemsTL = new TimelineMax({ paused: true })
+// 	.addLabel('start')
+// 	.to({ counter: 0 }, (items.length + 1) * 0.7, {
+// 		counter: 1
+// 	})
+// 	.to(list, 0.7 * items.length, {
+// 		y: 0
+// 	}, 'start')
+// 	.staggerTo(items, 0.7, {
+// 		opacity: 1
+// 	}, 0.7, 'start')
 
 let played = false
 let progressPrev = 0
@@ -49,20 +59,21 @@ scene
 	})
 	.on('progress', ({ progress }) => {
 		// console.log(progress)
-		if (progress > 0.1 && !played) {
-			played = true
-			logosTL.play()
-		} else if (progress <= 0.1 && played) {
-			played = false
-			logosTL.reverse()
-		}
-		if (progress > 0.2 && progressPrev < progress) {
-			itemsTL.progress(progress - 0.2)
-		} else if (progressPrev >= progress) {
-			progress = progress - 0.2 < 0 ? 0 : progress - 0.2
-			itemsTL.progress(progress)
-		}
-		progressPrev = progress
+		// if (progress > 0.1 && !played) {
+		// 	played = true
+		// 	logosTL.play()
+		// } else if (progress <= 0.1 && played) {
+		// 	played = false
+		// 	logosTL.reverse()
+		// }
+		logosTL.progress(progress)
+		// if (progress > 0.2 && progressPrev < progress) {
+		// 	itemsTL.progress(progress - 0.2)
+		// } else if (progressPrev >= progress) {
+		// 	progress = progress - 0.2 < 0 ? 0 : progress - 0.2
+		// 	itemsTL.progress(progress)
+		// }
+		// progressPrev = progress
 	})
 	.addTo(controller)
 

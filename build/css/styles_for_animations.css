@@ -187,4 +187,46 @@
 }
 /*speaks*/
 
+/*team*/
+.block-team .shape-image {
+	transform: translateX(-3%);
+}
+.block-team .shape-image svg {
+	width: 100%;
+}
+/*team*/
+
+/*delivery*/
+.block-delivery__item {
+	opacity: 0;
+}
+
+.block-details__chart > div {
+	position: relative;
+	margin-top: -50px;
+	max-width: 592px;
+	height: 700px;
+}
+
+.block-details__chart > div:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	width: 495px;
+	height: 495px;
+	background: #fff;
+	transform: translate(-50%, -50%);
+}
+
+.block-details__chart svg > g > g:first-child {
+	display: none;
+}
+.block-details__chart svg > g > g:nth-child(2) > g:nth-child(2) {
+	display: none;
+}
+/*delivery*/
+
+
 
