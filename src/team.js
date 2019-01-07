@@ -53,15 +53,17 @@ const tl = new TimelineMax({ paused: true })
 
 const controller = new Controller()
 const scene = new Scene({
-	triggerHook: 'onCenter',
-	triggerElement: section
+	triggerHook: 0.8,
+	triggerElement: section,
+	duration: section.offsetHeight
 })
 
 scene
 	.addTo(controller)
-	.on('enter', () => {
-		tl.play()
-	})
-	.on('leave', () => {
-		tl.reverse()
-	})
+	.on('progress', ({ progress }) => tl.progress(progress))
+	// .on('enter', () => {
+		// tl.play()
+	// })
+	// .on('leave', () => {
+		// tl.reverse()
+	// })
