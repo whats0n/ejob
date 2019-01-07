@@ -65,17 +65,20 @@ const tl = new TimelineMax({ paused: true })
 	})
 
 const controller = new Controller()
-const scene = new Scene({
-	triggerHook: 'onCenter',
-	triggerElement: section
+new Scene({
+	triggerHook: 'onLeave',
+	triggerElement: section,
+	duration: 500,
+	offset: parseInt(window.getComputedStyle(section.querySelector('.js-speaks-graph')).top)
 })
-
-scene
 	.addTo(controller)
-	.on('enter', () => {
+	.setPin(section)
+	.on('enter', ({ progress }) => {
+		if (!progress) return
 		tl.play()
 	})
-	.on('leave', () => {
+	.on('leave', ({ progress }) => {
+		if (progress) return
 		tl.reverse()
 		document.removeEventListener('mousemove', rotate)
 	})
@@ -104,8 +107,7 @@ Array
 				: cloud
 		const cloudScene = new Scene({
 			triggerHook: 'onCenter',
-			triggerElement: cloud,
-			offset: -cloud.offsetHeight
+			triggerElement: cloud
 		})
 		const tl = new TimelineMax({ paused: true })
 			.to(elements, 0.5, {

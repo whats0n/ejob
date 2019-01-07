@@ -24,11 +24,11 @@ const zoomInDelay = '-=0.5'
 
 const tl = new TimelineMax({ paused: true })
 	// group 0
-	.to(yellowFirst, bounceInDuration, {
+	.to(yellowFirst, 3, {
 		scale: 1,
 		transformOrigin: '50% 50%',
 		ease: Bounce.easeOut
-	})
+	}, 1)
 	.addLabel('groupFirst', zoomInDelay)
 	.staggerTo(groupsFirst[0].querySelectorAll('.js-road-circle'), zoomInDuration, {
 		transformOrigin: '50% 50%',
@@ -49,19 +49,18 @@ const tl = new TimelineMax({ paused: true })
 		transformOrigin: '50% 50%'
 	}, 0.15, zoomInDelay)
 	// // group 2
-	.addLabel('blue', bounceInDelay)
 	.to(blue, bounceInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%',
 		ease: Bounce.easeOut
-	}, 'blue')
+	})
+	.to(subtitle, 1, {
+		opacity: 1
+	})
 	.staggerTo(groupThird.querySelectorAll('.js-road-circle'), zoomInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%'
-	}, 0.15, zoomInDelay)
-	.to(subtitle, 1, {
-		opacity: 1
-	}, 'blue')
+	}, 0.15, '+=1')
 	// // group 3
 	.to(yellowSecond, bounceInDuration, {
 		scale: 1,
@@ -69,14 +68,14 @@ const tl = new TimelineMax({ paused: true })
 		ease: Bounce.easeOut
 	}, bounceInDelay)
 	.addLabel('groupFourth', zoomInDelay)
-	.addLabel('groupFourthText', '+=0.4')
+	.addLabel('groupFourthText', '+=2')
 	.staggerTo(groupFourth.querySelectorAll('.js-road-circle'), zoomInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%'
 	}, 0.15, 'groupFourth')
 	.staggerTo([subsubtitle, text], 1, {
 		opacity: 1
-	}, 0.4, 'groupFourth')
+	}, 0.4, 'groupFourthText')
 	// // group 4
 	.to(orageSecond, bounceInDuration, {
 		scale: 1,
@@ -92,13 +91,13 @@ const controller = new Controller()
 const scenePin = new Scene({
 	triggerHook: 'onLeave',
 	triggerElement: section,
-	duration: section.offsetHeight 
+	duration: section.offsetHeight * 2
 })
 
 const scene = new Scene({
 	triggerHook: 'onLeave',
 	triggerElement: section,
-	duration: section.offsetHeight * 1.8
+	duration: section.offsetHeight * 2.8
 })
 
 scenePin
