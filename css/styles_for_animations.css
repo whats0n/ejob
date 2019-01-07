@@ -360,5 +360,44 @@
 }
 /*delivery*/
 
+/*exchange*/
+.block-exchange:before {
+	display: none;
+}
 
+.block-exchange__item {
+	opacity: 0;
+	transform: translateX(-40px);
+}
+
+.block-exchange__circles {
+	position: absolute;
+	right: -17px;
+	bottom: -10px;
+	width: 396px;
+	font-size: 0;
+}
+
+.block-exchange__circles svg {
+	width: 100%;
+}
+/*exchange*/
+
+/*news*/
+.block-news:before {
+	display: none;
+}
+
+.block-news__circles {
+	position: absolute;
+	right: -5px;
+	bottom: 55px;
+	width: 257px;
+	height: 214px;
+}
+
+.block-news__circles svg {
+	width: 100%;
+}
+/*news*/
 
