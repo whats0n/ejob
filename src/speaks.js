@@ -92,8 +92,6 @@ const contentScene = new Scene({
 	triggerElement: content,
 	duration: content.offsetHeight - details.offsetHeight
 })
-
-contentScene
 	.addTo(controller)
 	.setPin(details)
 
@@ -106,8 +104,9 @@ Array
 			: i === clouds.length - 1 ? [cloud, section.querySelector(`.js-speaks-detail[data-connect="last"]`)]
 				: cloud
 		const cloudScene = new Scene({
-			triggerHook: 'onCenter',
-			triggerElement: cloud
+			triggerHook: 'onEnter',
+			triggerElement: cloud,
+			offset: +cloud.offsetHeight
 		})
 		const tl = new TimelineMax({ paused: true })
 			.to(elements, 0.5, {

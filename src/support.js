@@ -5,6 +5,9 @@ const section = document.querySelector('.js-support')
 const items = section.querySelectorAll('.js-support-item')
 const text = section.querySelectorAll('.js-support-text')
 
+const controller = new Controller()
+const duration = 2000
+
 const tl = new TimelineMax({ paused: true })
 	.staggerTo(items, 0.8, {
 		opacity: 1
@@ -14,11 +17,10 @@ const tl = new TimelineMax({ paused: true })
 		y: 0
 	})
 
-const controller = new Controller()
 new Scene({
 	triggerHook: 'onCenter',
 	triggerElement: section,
-	duration: 2000
+	duration: duration
 })
 	.addTo(controller)
 	.on('progress', ({ progress }) => tl.progress(progress))
@@ -26,7 +28,7 @@ new Scene({
 new Scene({
 	triggerHook: 'onLeave',
 	triggerElement: section,
-	duration: 2000
+	duration: duration
 })
 	.addTo(controller)
 	.setPin(section)
