@@ -8,6 +8,17 @@
 	opacity: 0;
 }
 
+.visual__figure {
+	position: relative;
+}
+
+.visual__figure-in {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
 /*.visual .image-holder img {
 	opacity: 0;
 	transform: translateX(150px);
@@ -17,6 +28,12 @@
 	position: fixed;
 	top: 0;
 }
+
+/*block text*/
+.block-text__container {
+	padding-top: 100px;
+}
+/*block text*/
 
 /*block market*/
 .block-market {
