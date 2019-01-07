@@ -89,20 +89,31 @@ const tl = new TimelineMax({ paused: true })
 	}, 0.15, zoomInDelay)
 
 const controller = new Controller()
-const scene = new Scene({
-	triggerHook: 'onCenter',
+const scenePin = new Scene({
+	triggerHook: 'onLeave',
 	triggerElement: section,
-	duration: section.offsetHeight
+	duration: section.offsetHeight 
 })
+
+const scene = new Scene({
+	triggerHook: 'onLeave',
+	triggerElement: section,
+	duration: section.offsetHeight * 1.8
+})
+
+scenePin
+	.addTo(controller)
+	.setPin(section)
 
 scene
 	.addTo(controller)
-	.on('enter', () => {
-		tl.play()
-	})
-	.on('leave', () => {
-		tl.reverse()
-	})
+	.on('progress', ({ progress  }) => tl.progress(progress))
+	// .on('enter', () => {
+	// 	tl.play()
+	// })
+	// .on('leave', () => {
+	// 	tl.reverse()
+	// })
 
 
 
