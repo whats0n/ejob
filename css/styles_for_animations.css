@@ -220,6 +220,7 @@
 .block-details__chart {
 	position: relative;
 	max-width: 592px;
+	pointer-events: none;
 }
 .block-details__chart-graph {
 	position: relative;
