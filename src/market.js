@@ -8,7 +8,7 @@ const list = section.querySelectorAll('.js-market-list')
 const items = section.querySelectorAll('.js-market-item')
 const logos = section.querySelectorAll('.js-market-logo')
 
-const height = 3000
+const height = 1500
 
 const controller = new Controller()
 const scene = new Scene({
