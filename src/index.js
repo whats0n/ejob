@@ -9,4 +9,6 @@ window.addEventListener('load', () => {
 	require('./team')
 	require('./delivery')
 	require('./details')
+	require('./exchange')
+	require('./news')
 })
