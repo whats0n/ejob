@@ -32,11 +32,9 @@ const rotate = function (e) {
 	`)
 }
 
-const tl = new TimelineMax({ paused: true })
-	.staggerTo(circles, zoomInDuration, {
-		scale: 1,
-		transformOrigin: '50% 50%'
-	}, 0.15, zoomInDelay)
+let played = false
+let circlesTL = null
+const yellowTL = new TimelineMax({ paused: true })
 	.to([yellow, gap], bounceInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%',
@@ -63,6 +61,28 @@ const tl = new TimelineMax({ paused: true })
 	.eventCallback('onComplete', () => {
 		document.addEventListener('mousemove', rotate)
 	})
+	.eventCallback('onReverseComplete', () => {
+		circlesTL.reverse()
+	})
+
+const createCirclesTL = () => new TimelineMax({ paused: true })
+	.staggerTo(circles, zoomInDuration, {
+		scale: 1,
+		transformOrigin: '50% 50%'
+	}, 0.15, zoomInDelay)
+	.eventCallback('onComplete', () => {
+		console.log('call onComplete')
+		played = true
+		yellowTL.play()
+	})
+	.eventCallback('onReverseComplete', () => {
+		played = false
+		circlesTL = createCirclesTL()
+		console.log('call onReverseComplete')
+	})
+
+circlesTL = createCirclesTL()
+
 
 const controller = new Controller()
 new Scene({
@@ -73,15 +93,31 @@ new Scene({
 })
 	.addTo(controller)
 	.setPin(section)
-	.on('enter', ({ progress }) => {
-		if (!progress) return
-		tl.play()
+new Scene({
+	triggerHook: 'onCenter',
+	triggerElement: section,
+	duration: 500,
+	offset: parseInt(window.getComputedStyle(section.querySelector('.js-speaks-graph')).top)
+})
+	.addTo(controller)
+	.on('progress', ({ progress }) => {
+		console.log(played, progress)
+		if (played && progress === 0) {
+			document.removeEventListener('mousemove', rotate)
+			yellowTL.reverse()
+		} else if (!played) {
+			circlesTL.progress(progress)
+		}
 	})
-	.on('leave', ({ progress }) => {
-		if (progress) return
-		tl.reverse()
-		document.removeEventListener('mousemove', rotate)
-	})
+	// .on('enter', ({ progress }) => {
+	// 	if (!progress) return
+	// 	tl.play()
+	// })
+	// .on('leave', ({ progress }) => {
+	// 	if (progress) return
+	// 	tl.reverse()
+	// 	document.removeEventListener('mousemove', rotate)
+	// })
 
 const content = section.querySelector('.js-speaks-content')
 const details = section.querySelector('.js-speaks-details')

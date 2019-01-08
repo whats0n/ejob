@@ -22,14 +22,22 @@ const zoomInDuration = 0.4
 const bounceInDelay = '-=0.2'
 const zoomInDelay = '-=0.5'
 
-const tl = new TimelineMax({ paused: true })
-	// group 0
-	.to(yellowFirst, 3, {
+const yellowTL = new TimelineMax({ paused: true })
+	.to(yellowFirst, bounceInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%',
 		ease: Bounce.easeOut
-	}, 1)
-	.addLabel('groupFirst', zoomInDelay)
+	})
+
+const tl = new TimelineMax({ paused: true })
+	// group 0
+	.eventCallback('onReverseComplete', () => {
+		yellowTL.reverse()
+	})
+	.call(() => {
+		yellowTL.play()
+	}, null, null, 1)
+	.addLabel('groupFirst', 3)
 	.staggerTo(groupsFirst[0].querySelectorAll('.js-road-circle'), zoomInDuration, {
 		transformOrigin: '50% 50%',
 		scale: 1
@@ -68,14 +76,14 @@ const tl = new TimelineMax({ paused: true })
 		ease: Bounce.easeOut
 	}, bounceInDelay)
 	.addLabel('groupFourth', zoomInDelay)
-	.addLabel('groupFourthText', '+=2')
+	// .addLabel('groupFourthText', '+=2')
 	.staggerTo(groupFourth.querySelectorAll('.js-road-circle'), zoomInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%'
 	}, 0.15, 'groupFourth')
-	.staggerTo([subsubtitle, text], 1, {
-		opacity: 1
-	}, 0.4, 'groupFourthText')
+	// .staggerTo([subsubtitle, text], 1, {
+	// 	opacity: 1
+	// }, 0.4, 'groupFourthText')
 	// // group 4
 	.to(orageSecond, bounceInDuration, {
 		scale: 1,

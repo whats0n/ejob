@@ -35,18 +35,20 @@ const circlesTL = new TimelineMax({ paused: true })
 const controller = new Controller()
 const scene = new Scene({
 	triggerHook: 'onCenter',
-	triggerElement: section
+	triggerElement: section,
+	duration: section.offsetHeight
 })
 
 scene
 	.addTo(controller)
-	.on('start', ({ progress }) => {
-		if (progress) {
-			tl.play()
-			circlesTL.play()
-		} else {
-			tl.reverse()
-			circlesTL.reverse()
-		}
-	})
+	.on('progress', ({ progress }) => circlesTL.progress(progress))
+	// .on('start', ({ progress }) => {
+	// 	if (progress) {
+	// 		tl.play()
+	// 		circlesTL.play()
+	// 	} else {
+	// 		tl.reverse()
+	// 		circlesTL.reverse()
+	// 	}
+	// })
 
