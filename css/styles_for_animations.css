@@ -109,8 +109,7 @@
 	transform: translateX(-3.5%);
 }
 
-.block-meet__subtitle,
-.block-meet__text {
+.block-meet__subtitle {
 	opacity: 0;
 	will-change: opacity;
 }
