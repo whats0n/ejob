@@ -61,9 +61,3 @@ const scene = new Scene({
 scene
 	.addTo(controller)
 	.on('progress', ({ progress }) => tl.progress(progress))
-	// .on('enter', () => {
-		// tl.play()
-	// })
-	// .on('leave', () => {
-		// tl.reverse()
-	// })

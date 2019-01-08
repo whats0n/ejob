@@ -42,13 +42,11 @@ const scene = new Scene({
 scene
 	.addTo(controller)
 	.on('progress', ({ progress }) => circlesTL.progress(progress))
-	// .on('start', ({ progress }) => {
-	// 	if (progress) {
-	// 		tl.play()
-	// 		circlesTL.play()
-	// 	} else {
-	// 		tl.reverse()
-	// 		circlesTL.reverse()
-	// 	}
-	// })
+	.on('start', ({ progress }) => {
+		if (progress) {
+			tl.play()
+		} else {
+			tl.reverse()
+		}
+	})
 

@@ -1,5 +1,6 @@
 import { Scene, Controller } from 'scrollmagic'
 import { TimelineMax } from 'gsap'
+import { bounceInDuration, zoomInDuration, bounceInDelay, zoomInDelay, isDesktop } from './_constants'
 
 const section = document.querySelector('.js-speaks')
 const circles = section.querySelectorAll('.js-speaks-circle')
@@ -8,10 +9,9 @@ const gap = section.querySelector('.js-speaks-gap')
 const rotator = section.querySelector('.js-rotator')
 const rotatorIn = rotator.querySelector('.js-rotator-in')
 
-const bounceInDuration = 0.9
-const zoomInDuration = 0.4
-const bounceInDelay = '-=0.2'
-const zoomInDelay = '-=0.5'
+const content = section.querySelector('.js-speaks-content')
+const details = section.querySelector('.js-speaks-details')
+const clouds = section.querySelectorAll('.js-speaks-cloud')
 
 const rotate = function (e) {
 	const { scrollY, scrollX, pageYOffset, pageXOffset } = window
@@ -71,91 +71,90 @@ const createCirclesTL = () => new TimelineMax({ paused: true })
 		transformOrigin: '50% 50%'
 	}, 0.15, zoomInDelay)
 	.eventCallback('onComplete', () => {
-		console.log('call onComplete')
 		played = true
 		yellowTL.play()
 	})
 	.eventCallback('onReverseComplete', () => {
 		played = false
 		circlesTL = createCirclesTL()
-		console.log('call onReverseComplete')
 	})
 
 circlesTL = createCirclesTL()
 
-
-const controller = new Controller()
-new Scene({
-	triggerHook: 'onLeave',
-	triggerElement: section,
-	duration: 500,
-	offset: parseInt(window.getComputedStyle(section.querySelector('.js-speaks-graph')).top)
-})
-	.addTo(controller)
-	.setPin(section)
-new Scene({
-	triggerHook: 'onCenter',
-	triggerElement: section,
-	duration: 500,
-	offset: parseInt(window.getComputedStyle(section.querySelector('.js-speaks-graph')).top)
-})
-	.addTo(controller)
-	.on('progress', ({ progress }) => {
-		console.log(played, progress)
-		if (played && progress === 0) {
-			document.removeEventListener('mousemove', rotate)
-			yellowTL.reverse()
-		} else if (!played) {
-			circlesTL.progress(progress)
-		}
+const build = () => {
+	const controller = new Controller()
+	new Scene({
+		triggerHook: 'onLeave',
+		triggerElement: section,
+		duration: 500,
+		offset: parseInt(window.getComputedStyle(section.querySelector('.js-speaks-graph')).top)
 	})
-	// .on('enter', ({ progress }) => {
-	// 	if (!progress) return
-	// 	tl.play()
-	// })
-	// .on('leave', ({ progress }) => {
-	// 	if (progress) return
-	// 	tl.reverse()
-	// 	document.removeEventListener('mousemove', rotate)
-	// })
-
-const content = section.querySelector('.js-speaks-content')
-const details = section.querySelector('.js-speaks-details')
-const clouds = section.querySelectorAll('.js-speaks-cloud')
-
-const contentScene = new Scene({
-	triggerHook: 'onLeave',
-	triggerElement: content,
-	duration: content.offsetHeight - details.offsetHeight
-})
-	.addTo(controller)
-	.setPin(details)
-
-Array
-	.prototype
-	.forEach
-	.call(clouds, (cloud, i) => {
-		const connect = cloud.getAttribute('data-connect')
-		const elements = connect ? [cloud, section.querySelector(`.js-speaks-detail[data-connect="${connect}"]`)]
-			: i === clouds.length - 1 ? [cloud, section.querySelector(`.js-speaks-detail[data-connect="last"]`)]
-				: cloud
-		const cloudScene = new Scene({
-			triggerHook: 'onEnter',
-			triggerElement: cloud,
-			offset: +cloud.offsetHeight
+		.addTo(controller)
+		.setPin(section)
+	new Scene({
+		triggerHook: 'onCenter',
+		triggerElement: section,
+		duration: 500,
+		offset: parseInt(window.getComputedStyle(section.querySelector('.js-speaks-graph')).top)
+	})
+		.addTo(controller)
+		.on('progress', ({ progress }) => {
+			if (played && progress === 0) {
+				document.removeEventListener('mousemove', rotate)
+				yellowTL.reverse()
+			} else if (!played) {
+				circlesTL.progress(progress)
+			}
 		})
-		const tl = new TimelineMax({ paused: true })
-			.to(elements, 0.5, {
-				opacity: 1,
-				y: 0
-			})
 
-		cloudScene
-			.addTo(controller)
-			.on('enter', () => {
-				tl.play()
-			})
-			.on('leave', () => {
-				tl.reverse()
-			})
+	new Scene({
+		triggerHook: 'onLeave',
+		triggerElement: content,
+		duration: content.offsetHeight - details.offsetHeight
 	})
+		.addTo(controller)
+		.setPin(details)
+
+
+	Array
+		.prototype
+		.forEach
+		.call(clouds, (cloud, i) => {
+			const connect = cloud.getAttribute('data-connect')
+			const elements = connect ? [cloud, section.querySelector(`.js-speaks-detail[data-connect="${connect}"]`)]
+				: i === clouds.length - 1 ? [cloud, section.querySelector(`.js-speaks-detail[data-connect="last"]`)]
+					: cloud
+			const cloudScene = new Scene({
+				triggerHook: 'onEnter',
+				triggerElement: cloud,
+				offset: +cloud.offsetHeight
+			})
+			const tl = new TimelineMax({ paused: true })
+				.to(elements, 0.5, {
+					opacity: 1,
+					y: 0
+				})
+
+			cloudScene
+				.addTo(controller)
+				.on('enter', () => {
+					tl.play()
+				})
+				.on('leave', () => {
+					tl.reverse()
+				})
+		})
+	return controller
+}
+const clear = () => TweenMax.set([section, ...clouds, ...section.querySelectorAll('.js-speaks-detail')], { clearProps: 'all' })
+
+let builded = isDesktop() ? build() : null
+
+window.addEventListener('resize', () => {
+	if (isDesktop()) {
+		builded && builded.destroy(true)
+		builded = build()
+	} else {
+		builded && builded.destroy(true)
+	}
+})

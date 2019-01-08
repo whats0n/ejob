@@ -1,13 +1,12 @@
 import { Scene, Controller } from 'scrollmagic'
-import { TimelineMax } from 'gsap'
+import { TimelineMax, TweenMax } from 'gsap'
+import { isDesktop } from './_constants'
 
 const section = document.querySelector('.js-market')
 const container = section.querySelector('.js-market-container')
 const list = section.querySelectorAll('.js-market-list')
 const items = section.querySelectorAll('.js-market-item')
 const logos = section.querySelectorAll('.js-market-logo')
-
-const controller = new Controller()
 
 const logosTL = new TimelineMax({ paused: true })
 	.staggerTo(logos, 0.7, {
@@ -22,11 +21,29 @@ const logosTL = new TimelineMax({ paused: true })
 		opacity: 1
 	}, 0.7, 'start')
 
-new Scene({
-	triggerHook: 'onLeave',
-	triggerElement: section,
-	duration: 1500
+const build = () => {
+	const controller = new Controller()
+	new Scene({
+		triggerHook: 'onLeave',
+		triggerElement: section,
+		duration: 1500
+	})
+		.addTo(controller)
+		.setPin(container)
+		.on('progress', ({ progress }) => logosTL.progress(progress))
+	return controller
+}
+
+const clear = () => TweenMax.set([section, container, list, items, logos], { clearProps: 'all' })
+
+let builded = isDesktop() ? build() : null
+
+window.addEventListener('resize', () => {
+	if (isDesktop()) {
+		builded && builded.destroy(true)
+		builded = build()
+	} else {
+		clear()
+		builded && builded.destroy(true)
+	}
 })
-	.addTo(controller)
-	.setPin(container)
-	.on('progress', ({ progress }) => logosTL.progress(progress))

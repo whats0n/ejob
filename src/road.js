@@ -1,7 +1,11 @@
 import { Scene, Controller } from 'scrollmagic'
 import { TimelineMax } from 'gsap'
+import { bounceInDuration, zoomInDuration, bounceInDelay, zoomInDelay, isDesktop } from './_constants'
 
 const section = document.querySelector('.js-road')
+const subtitle = section.querySelector('.js-road-subtitle')
+
+// begin SVG elements
 const yellowFirst = section.querySelector('.js-road-yellow-first')
 const orageFirst = section.querySelector('.js-road-orange-first')
 const blue = section.querySelector('.js-road-blue')
@@ -13,14 +17,8 @@ const groupThird = section.querySelector('.js-road-group-third')
 const groupFourth = section.querySelector('.js-road-group-fourth')
 const groupFifth = section.querySelector('.js-road-group-fifth')
 
-const subtitle = section.querySelector('.js-road-subtitle')
-const subsubtitle = section.querySelector('.js-road-subsubtitle')
-const text = section.querySelector('.js-road-text')
-
-const bounceInDuration = 0.9
-const zoomInDuration = 0.4
-const bounceInDelay = '-=0.2'
-const zoomInDelay = '-=0.5'
+const circles = [yellowFirst, orageFirst, blue, yellowSecond, orageSecond, ...section.querySelectorAll('.js-road-circle')]
+// end SVG elements
 
 const yellowTL = new TimelineMax({ paused: true })
 	.to(yellowFirst, bounceInDuration, {
@@ -30,7 +28,6 @@ const yellowTL = new TimelineMax({ paused: true })
 	})
 
 const tl = new TimelineMax({ paused: true })
-	// group 0
 	.eventCallback('onReverseComplete', () => {
 		yellowTL.reverse()
 	})
@@ -46,7 +43,6 @@ const tl = new TimelineMax({ paused: true })
 		transformOrigin: '50% 50%',
 		scale: 1
 	}, 0.15, 'groupFirst')
-	// // group 1
 	.to(orageFirst, bounceInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%',
@@ -56,7 +52,6 @@ const tl = new TimelineMax({ paused: true })
 		scale: 1,
 		transformOrigin: '50% 50%'
 	}, 0.15, zoomInDelay)
-	// // group 2
 	.to(blue, bounceInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%',
@@ -69,22 +64,16 @@ const tl = new TimelineMax({ paused: true })
 		scale: 1,
 		transformOrigin: '50% 50%'
 	}, 0.15, '+=1')
-	// // group 3
 	.to(yellowSecond, bounceInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%',
 		ease: Bounce.easeOut
 	}, bounceInDelay)
 	.addLabel('groupFourth', zoomInDelay)
-	// .addLabel('groupFourthText', '+=2')
 	.staggerTo(groupFourth.querySelectorAll('.js-road-circle'), zoomInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%'
 	}, 0.15, 'groupFourth')
-	// .staggerTo([subsubtitle, text], 1, {
-	// 	opacity: 1
-	// }, 0.4, 'groupFourthText')
-	// // group 4
 	.to(orageSecond, bounceInDuration, {
 		scale: 1,
 		transformOrigin: '50% 50%',
@@ -95,32 +84,51 @@ const tl = new TimelineMax({ paused: true })
 		transformOrigin: '50% 50%'
 	}, 0.15, zoomInDelay)
 
-const controller = new Controller()
-const scenePin = new Scene({
-	triggerHook: 'onLeave',
-	triggerElement: section,
-	duration: section.offsetHeight * 2
+const build = () => {
+	circles.forEach(circle => {
+		let transform = circle.getAttribute('transform')
+		transform = transform.replace('scale(0)', '') + ' scale(0)'
+		circle.setAttribute('transform', transform)
+	})
+	const controller = new Controller()
+	new Scene({
+		triggerHook: 'onLeave',
+		triggerElement: section,
+		duration: section.offsetHeight * 2
+	})
+		.addTo(controller)
+		.setPin(section)
+	new Scene({
+		triggerHook: 'onLeave',
+		triggerElement: section,
+		duration: section.offsetHeight * 2.8
+	})
+		.addTo(controller)
+		.on('progress', ({ progress  }) => tl.progress(progress))
+	return controller
+}
+
+const clear = () => {
+	circles.forEach(circle => {
+		let transform = circle.getAttribute('transform')
+		transform = transform.replace('scale(0)', '')
+		circle.setAttribute('transform', transform)
+	})
+
+	TweenMax.set([section, subtitle], { clearProps: 'all' })
+}
+
+let builded = isDesktop() ? build() : null
+
+window.addEventListener('resize', () => {
+	if (isDesktop()) {
+		builded && builded.destroy(true)
+		builded = build()
+	} else {
+		clear()
+		builded && builded.destroy(true)
+	}
 })
-
-const scene = new Scene({
-	triggerHook: 'onLeave',
-	triggerElement: section,
-	duration: section.offsetHeight * 2.8
-})
-
-scenePin
-	.addTo(controller)
-	.setPin(section)
-
-scene
-	.addTo(controller)
-	.on('progress', ({ progress  }) => tl.progress(progress))
-	// .on('enter', () => {
-	// 	tl.play()
-	// })
-	// .on('leave', () => {
-	// 	tl.reverse()
-	// })
 
 
 
