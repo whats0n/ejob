@@ -465,7 +465,9 @@
 		max-width: 200px !important;
     transform: translateX(-20%);
 	}
-
+	.block-details__chart-graph {
+		height: 320px;
+	}
 	.block-details__chart-title {
 		padding: 5px 0 5px 12px;
 		font-size: 12px;
