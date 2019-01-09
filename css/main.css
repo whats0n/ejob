@@ -911,7 +911,7 @@ a {
 }
 
 .visual h1 {
-	margin: 0 0 30px;
+	/* margin: 0 0 30px; */
 	line-height: 1.06;
 }
 
@@ -1481,7 +1481,7 @@ a {
 .chat-details .logos-list {
 	display: -webkit-box;
 	display: -ms-flexbox;
-	display: flex;
+	/* display: flex; */
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-ms-flex-direction: row;
@@ -2563,11 +2563,11 @@ a {
 	}
 
 	.visual .text-holder {
-		padding: 200px 0 0 94px;
+		padding: 170px 0 0 94px;
 	}
 
 	.visual h1 {
-		font-size: 70px;
+		font-size: 3.2em;
 		line-height: 1;
 	}
 
@@ -2658,21 +2658,21 @@ a {
 	}
 
 	.visual {
-		padding: 0 0 50px;
+		padding: 0 0 220px;
 	}
 
 	.visual .container {
 		-webkit-box-align: center;
 		-ms-flex-align: center;
-		align-items: center;
+		/* align-items: center; */
 	}
 
 	.visual .text-holder {
-		padding: 0 0 0 94px;
+		padding: 140px 0 0 10%;
 	}
 
 	.visual h1 {
-		font-size: 50px;
+		font-size: 2.5em;
 	}
 
 	.block-text {
@@ -2711,7 +2711,10 @@ a {
 	}
 
 	.block-development .image-holder {
-		width: 80%;
+		/* width: 80%; */
+		/* visibility: hidden; */
+		/* clear: both; */
+		display:  none;
 	}
 
 	.block-development .text-holder {
@@ -2984,7 +2987,7 @@ a {
 	}
 
 	.visual {
-		min-height: 720px;
+		/* min-height: auto; */
 	}
 
 	.visual .shape-image {
@@ -2999,11 +3002,11 @@ a {
 
 	.visual .text-holder {
 		width: 100%;
-		padding: 190px 0 0 94px;
+		padding: 150px 0 0 94px;
 	}
 
 	.visual h1 {
-		font-size: 40px;
+		font-size: 2em;
 	}
 
 	.visual .image-holder {
@@ -3049,7 +3052,7 @@ a {
 	}
 
 	.block-market h2 {
-		font-size: 40px;
+		font-size: 1.8em;
 		margin: 0 0 30px;
 		text-align: left;
 	}
@@ -3135,7 +3138,7 @@ a {
 	}
 
 	.block-support .icons-list li {
-		width: 100%;
+		/* width: 100%; */
 		margin: 0 0 30px;
 	}
 
@@ -3193,6 +3196,7 @@ a {
 
 	.chat-details .logos-list {
 		margin: -10px -22px;
+		/* float: left; */
 	}
 
 	.chat-details .logos-list li {
