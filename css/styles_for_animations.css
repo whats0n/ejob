@@ -236,6 +236,19 @@
 	font-size: 21px;
 }
 
+.block-speaks__cloud {
+	transform: translateY(50%);
+}
+
+.block-speaks__cloud,
+.block-speaks__box {
+	opacity: 0;
+}
+
+.block-speaks .logos-list {
+	margin-top: 40px;
+}
+
 @media screen and (max-width: 1024px) {
 	.block-text__container,
 	.visual__figure-in {
@@ -392,21 +405,8 @@
 		border-radius: 50%;
 	}
 
-	.block-speaks__cloud {
-		transform: translateY(50%);
-	}
-
-	.block-speaks__cloud,
-	.block-speaks__box {
-		opacity: 0;
-	}
-
 	.block-speaks__box:last-child {
 		margin-bottom: 0;
-	}
-
-	.block-speaks .logos-list {
-		margin-top: 40px;
 	}
 
 	.block-speaks__details-in {
