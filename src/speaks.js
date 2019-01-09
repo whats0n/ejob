@@ -127,7 +127,7 @@ const build = () => {
 			const cloudScene = new Scene({
 				triggerHook: 'onEnter',
 				triggerElement: cloud,
-				offset: +cloud.offsetHeight
+				offset: +cloud.offsetHeight + 250
 			})
 			const tl = new TimelineMax({ paused: true })
 				.to(elements, 0.5, {
