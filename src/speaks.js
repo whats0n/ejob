@@ -147,14 +147,48 @@ const build = () => {
 	return controller
 }
 const clear = () => TweenMax.set([section, ...clouds, ...section.querySelectorAll('.js-speaks-detail')], { clearProps: 'all' })
+const buildMobile = () => {
+	const controller = new Controller()
+	Array
+		.prototype
+		.forEach
+		.call([...clouds, ...section.querySelectorAll('.js-speaks-detail')], (element, i) => {
+			const cloudScene = new Scene({
+				triggerHook: 'onEnter',
+				triggerElement: element,
+				offset: +element.offsetHeight
+			})
+			const tl = new TimelineMax({ paused: true })
+				.to(element, 0.5, {
+					opacity: 1,
+					y: 0
+				})
+
+			cloudScene
+				.addTo(controller)
+				.on('enter', () => {
+					tl.play()
+				})
+				.on('leave', () => {
+					tl.reverse()
+				})
+		})
+	return controller
+}
 
 let builded = isDesktop() ? build() : null
+let buildedMobile = !isDesktop() ? buildMobile() : null
+// let isDesktopScreen = isDesktop()
 
 window.addEventListener('resize', () => {
 	if (isDesktop()) {
 		builded && builded.destroy(true)
+		buildedMobile && buildedMobile.destroy(true)
 		builded = build()
 	} else {
 		builded && builded.destroy(true)
+		buildedMobile && buildedMobile.destroy(true)
+		clear()
+		buildedMobile = buildMobile()
 	}
 })
