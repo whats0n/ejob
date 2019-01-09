@@ -16,6 +16,7 @@ const groupSecond = section.querySelector('.js-road-group-second')
 const groupThird = section.querySelector('.js-road-group-third')
 const groupFourth = section.querySelector('.js-road-group-fourth')
 const groupFifth = section.querySelector('.js-road-group-fifth')
+const groupSixth = section.querySelector('.js-road-group-sixth')
 
 const circles = [yellowFirst, orageFirst, blue, yellowSecond, orageSecond, ...section.querySelectorAll('.js-road-circle')]
 // end SVG elements
@@ -83,10 +84,15 @@ const tl = new TimelineMax({ paused: true })
 		scale: 1,
 		transformOrigin: '50% 50%'
 	}, 0.15, zoomInDelay)
+	.staggerTo(groupSixth.querySelectorAll('.js-road-circle'), zoomInDuration, {
+		scale: 1,
+		transformOrigin: '50% 50%'
+	}, 0.15, '-=0.35')
 
 const build = () => {
 	circles.forEach(circle => {
 		let transform = circle.getAttribute('transform')
+		if (!transform) return
 		transform = transform.replace('scale(0)', '') + ' scale(0)'
 		circle.setAttribute('transform', transform)
 	})
@@ -111,6 +117,7 @@ const build = () => {
 const clear = () => {
 	circles.forEach(circle => {
 		let transform = circle.getAttribute('transform')
+		if (!transform) return
 		transform = transform.replace('scale(0)', '')
 		circle.setAttribute('transform', transform)
 	})

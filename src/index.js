@@ -1,6 +1,7 @@
 import { isDesktop } from './_constants'
 
 window.addEventListener('load', () => {
+	$(window).scrollTop(0)
 	let desktop = isDesktop()
 	const scrollToTop = () => {
 		if (isDesktop() && !desktop) {
@@ -8,6 +9,7 @@ window.addEventListener('load', () => {
 			$(window).scrollTop(0)
 		} else if (!isDesktop() && desktop) {
 			desktop = false
+			$(window).scrollTop(0)
 		}
 	}
 	window.addEventListener('resize', scrollToTop)
