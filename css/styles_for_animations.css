@@ -249,7 +249,7 @@
 	margin-top: 40px;
 }
 
-.block-meet__circle {
+.block-meet__circle-small {
 	position: absolute;
 	right: 2.4%;
 	bottom: 8.5%;
@@ -259,12 +259,12 @@
 	transform: translate(50%, 50%) scale(0);
 }
 
-.block-meet__circle:nth-child(2) {
+.block-meet__circle-small:nth-child(2) {
 	right: .5%;
 	bottom: 9%;
 }
 
-.block-meet__circle:before {
+.block-meet__circle-small:before {
 	content: '';
 	display: block;
 	padding-bottom: 100%;
