@@ -13,10 +13,10 @@ const createChart = () => {
   created = true
   // Add data
   chart.data = [
-    { percent: 15 },
-    { percent: 25 },
-    { percent: 30 },
-    { percent: 30 }
+    { percent: 21 },
+    { percent: 7 },
+    { percent: 10 },
+    { percent: 62 }
   ]
 
   // Add and configure Series
